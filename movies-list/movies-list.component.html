@@ -1,0 +1,80 @@
+<div>
+    <h2 class='searchTextBox'>Movies List</h2>
+</div>
+<input [(ngModel)]="searchText" placeholder="Search.." class="searchTextBox">
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Serial Number</th>
+        <th scope="col">Title</th>
+        <th scope="col">
+            Year</th>
+        <th scope="col">Rated</th>
+        <th scope="col">Released</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Director</th>
+        <th scope="col">Writer</th>
+        <th scope="col">Actors</th>
+        <th scope="col">Plot</th>
+        <th scope="col">Language</th>
+        <th scope="col">Country</th>
+        <th scope="col">Awards</th> 
+        <th scope="col">Metascore</th>
+        <th scope="col">
+            imdb Rating</th>
+        <th scope="col">imdb Votes</th>
+        <th scope="col">Type</th>
+        <th scope="col">DVD</th>
+        <th scope="col">
+            BoxOffice</th>
+        <th scope="col">Production</th>
+        <th scope="col">Website</th>
+        <th scope="col">Responsive</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let list of movies| search: {
+            Title: searchText,
+             Year:searchText,  
+             Rated: searchText,Released: searchText,Genre: searchText,Director: searchText,Writer: searchText,Actors: searchText,
+             Plot: searchText,Language: searchText,Country: searchText,Awards: searchText,Metascore: searchText,imdbRating: searchText,
+            imdbVotes:searchText,Type: searchText,DVD: searchText,BoxOffice: searchText,Production: searchText,Website: searchText,Response: searchText} | paginate: {
+            itemsPerPage: contentPerPage,
+            currentPage: p,
+            totalItems: movies.length };let i=index">
+            <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{list.Title}}</td>
+                <td >{{list.Year}}</td>
+                <td >{{list.Rated}}</td>
+                <td >{{list.Released}}</td>
+                <td >{{list.Genre}}</td>
+                <td >{{list.Director}}</td>
+                <td>{{list.Writer}}</td>
+                <td>{{list.Actors}}</td>
+                <td>{{list.Plot}}</td>
+                <td>{{list.Language}}</td>
+                <td>{{list.Country}}</td>
+                <td>{{list.Awards}}</td> 
+                <td>{{list.Metascore}}</td>
+                <td>{{list.imdbRating}}</td>
+                <td>{{list.imdbVotes}}</td>
+                <td>{{list.Type}}</td>
+                <td>{{list.DVD}}</td>
+                <td>{{list.BoxOffice}}</td>
+                <td>{{list.Production}}</td>
+                <td>{{list.Website}}</td>
+                <td>{{list.Response}}</td>
+              </tr>
+        </ng-container>
+        
+            <tr>
+                <td colspan="22">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </td>
+            </tr>
+    </tbody>
+    
+  </table>
